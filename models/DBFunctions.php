@@ -170,7 +170,7 @@ function GetUserByEmail($email){
 
 
 function login($email, $password, $db) {
-      $statement = $db->prepare('SELECT * FROM users WHERE Email = :email;');
+      $statement = $db->prepare('SELECT * FROM users WHERE Email = :email OR UserName = :email;');
       $statement->execute(array(':email' => $email));
 
       $user = $statement->fetch(PDO::FETCH_ASSOC);
