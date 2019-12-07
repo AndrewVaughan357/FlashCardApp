@@ -1,9 +1,8 @@
 <?php
-
-	session_start();
+session_start();
     include_once('../models/DBConnect.php');
     include_once('../models/DBFunctions.php');
-    include_once('../views/newDeck.php');
+    
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -32,5 +31,7 @@
 			header("Location: ../controllers/createCards.php?DeckID=" . $deckID);
 		}
 	}
+
+include_once('../views/newDeck.php');
 	
 ?>
