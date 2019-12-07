@@ -169,7 +169,9 @@ function GetUserByEmail($email){
 }
 
 
-function login($email, $password, $db) {
+function login($email, $password) {
+	  global $db;
+
       $statement = $db->prepare('SELECT * FROM users WHERE Email = :email;');
       $statement->execute(array(':email' => $email));
 
@@ -196,13 +198,17 @@ function login($email, $password, $db) {
     
     // validation occurs in the controller, this funciton's only responsibility to insert the sign up 
     // data into the database
-    function signUp($email, $userName, $password, $db) {
+    function signUp($email, $userName, $password) {
+		global $db;
+
         $statement = $db->prepare('INSERT INTO users(RoleFK, Email, UserName, Password) VALUES(:roleFK, :email, :username, :password)');
         $statement->execute(array(':roleFK' => 2, ':email' => $email, ':username' => $userName, ':password' => $password));
     }
 
     // returns true if there is already a record containing the entered email address
-    function checkIfUserExists($email, $db) {
+    function checkIfUserExists($email) {
+		global $db;
+		
         $statement = $db->prepare('SELECT * FROM users WHERE Email = :email');
         $statement->execute(array(':email' => $email));
 

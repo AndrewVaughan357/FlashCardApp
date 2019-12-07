@@ -14,7 +14,7 @@
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
-        login($email, $password, $db);
+        login($email, $password);
 
         header('Location: ../views/myDecks.php');
         exit();

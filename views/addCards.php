@@ -12,6 +12,17 @@
             </div>
         </div>
         <div class="col-sm-8 col-md-6 mt-5 mx-auto">
+            <?php
+                if (isset($_SESSION['createCardErrorMessage'])) {
+                    echo '<p>' . $_SESSION['createCardErrorMessage'] . '</p>';
+                    unset($_SESSION['createCardErrorMessage']);
+                }
+
+                if (isset($_SESSION['createCardSuccessMessage'])) {
+                    echo '<p>' . $_SESSION['createCardSuccessMessage'] . '</p>';
+                    unset($_SESSION['createCardSuccessMessage']);
+                }
+            ?>
             <form action="./createCards.php" method="post">
             <input type="hidden" name="deck-id" value="<?php echo $deckID; ?>">
             <div class="col-md-12 px-2">

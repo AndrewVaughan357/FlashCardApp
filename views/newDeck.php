@@ -20,6 +20,12 @@
             </div>
         </div>
         <div class="col-sm-8 col-md-6 mt-5 mx-auto">
+            <?php
+                if (isset($_SESSION['editDeckErrorMessage'])) {
+                    echo '<p>' . $_SESSION['editDeckErrorMessage'] . '</p>';
+                    unset($_SESSION['editDeckErrorMessage']);
+                }
+            ?>
             <?php if(isset($deckID)): ?>
                 <form action="./editDeck.php" method="post">
                 <input type="hidden" name="deckID" value="<?php echo $deck['DeckID']; ?>">
@@ -27,6 +33,7 @@
                 <form action="./addDeck.php" method="post">
             <?php endif;?>
                     <div class="row">
+                        
                         <div class="col-md-6 px-2">
                             <label for="" class="input-label">Deck Name</label>
                             <?php if(isset($deckID)): ?>
