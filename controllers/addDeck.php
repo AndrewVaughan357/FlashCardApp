@@ -12,7 +12,7 @@
 		
 		$categoryDeck = $_POST['categories'];
 
-		if(!empty($deckName) || !empty($description) || !empty($categoryDeck))
+		if(empty($deckName) || empty($description) || empty($categoryDeck))
 		{
 
 			header("Location: ../controllers/addDeck.php");
