@@ -13,5 +13,5 @@
             <a href="controllers/signUp.php" class="primary-btn">Sign Up</a>
         </div>
     </div>
-</div>dasdasdsa
+</div>
 <?php include('views/footer.php');?>
