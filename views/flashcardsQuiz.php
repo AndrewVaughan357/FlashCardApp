@@ -21,9 +21,14 @@
         if($user['UserFK'] == $loggedIn){
             $check = true;
         }
-    }    
+    }
 
-    ?>
+    $admin = false;
+    if(CheckRole($_SESSION['signedInEmail'])){
+        $admin = true;
+    }  
+
+?>
 
 <div class="container-fluid" id="main-content">
     <div class="row">
@@ -95,8 +100,14 @@
                     <div class="row btn-wrapper">
                         <div class="col-6 px-2">
                             <a alt="Add deck to collection" href="../controllers/SubscribeDeck?DeckID=<?php echo $deckID ?>">Add Deck to yours.</a>
-                        </div>
-                        
+                        </div>                     
+                    </div>
+                <?php endif; ?>
+                <?php if($admin): ?>
+                    <div class="row btn-wrapper">
+                        <div class="col-6 px-2">
+                            <a alt="Delete this deck" href="../controllers/deleteDeck?DeckID=<?php echo $deckID ?>">Delete Deck</a>
+                        </div>                     
                     </div>
                 <?php endif; ?>
             </div>

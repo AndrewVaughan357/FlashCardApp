@@ -1,6 +1,4 @@
 <?php
-
-
 	session_start();
 
 	include('../models/DBConnect.php');
@@ -15,9 +13,11 @@
 		$deckID = $_GET['DeckID'];
 	}
 
-	DeleteDeck($deckID);
-	$_SESSION['editDecksMessage'] = 'Deck successfully deleted.';
+	if(CheckDeleteDeckPermissions($deckID)){
+		DeleteDeck($deckID);
+		$_SESSION['editDecksMessage'] = 'Deck successfully deleted.';		
+	}
+
 	header("Location: ../views/myDecks.php");
-	
 
 ?>
