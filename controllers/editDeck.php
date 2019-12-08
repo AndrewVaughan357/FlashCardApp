@@ -5,12 +5,9 @@
 
 	if(isset($_GET['DeckID'])){
 		$deckID = $_GET['DeckID'];
-		 $deck = GetDeckByID($deckID);
+		$deck = GetDeckByID($deckID);
     	include_once('../views/newDeck.php');
 	}
-
-
-   
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -22,25 +19,22 @@
 
 		if(empty($deckName) || empty($description))
 		{
-
-			header("Location: ../views/myDecks.php");
+			$_SESSION['editDeckErrorMessage'] = 'The deck must have a name and description';
+			header("Location: ./editDeck.php?DeckID=" . $deckID);
 		}
 		else
 		{
-			
 			if(isset($_POST['if-public'])){
 				$ifPublic = 1;
 			}
 			else{
 				$ifPublic = 0;
 			}
+
 			EditDeck($deckID, $deckName, $description, $ifPublic, $categoryID);
 
-			
+			$_SESSION['editDecksMessage'] = 'Deck changes successfully saved.';
 			header("Location: ../views/myDecks.php");
 		}
-
-
-	}
-	
+	}	
 ?>

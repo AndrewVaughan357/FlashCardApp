@@ -13,7 +13,7 @@ session_start();
 
 		if(empty($deckName) || empty($description) || empty($categoryDeck))
 		{
-
+			$_SESSION['editDeckErrorMessage'] = 'Please fill out all fields and select a category';
 			header("Location: ../controllers/addDeck.php");
 			exit();
 		}
@@ -27,7 +27,7 @@ session_start();
 			}			
 
 			$deckID = AddDeck($description, $deckName, $ifPublic, $categoryDeck);		
-
+			
 			header("Location: ../controllers/createCards.php?DeckID=" . $deckID);
 		}
 	}

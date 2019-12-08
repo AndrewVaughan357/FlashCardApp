@@ -9,8 +9,13 @@
         <div class="col-sm-8 col-md-6 mt-5 mx-auto">
         <?php
             if (isset($_SESSION['loginErrorMessage'])) {
-            echo '<p>' . $_SESSION['loginErrorMessage'] . '</p>';
-            unset($_SESSION['loginErrorMessage']);
+                echo '<p>' . $_SESSION['loginErrorMessage'] . '</p>';
+                unset($_SESSION['loginErrorMessage']);
+            }
+
+            if (isset($_SESSION['signupSuccess'])) {
+                echo '<p>' . $_SESSION['signupSuccess'] . '</p>';
+                unset($_SESSION['signupSuccess']);
             }
         ?>
             <form action="" method="post">
