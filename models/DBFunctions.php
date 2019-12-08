@@ -317,6 +317,24 @@ function login($email, $password) {
 
 		return $result;
 
+	}
+	
+	function GetUserIdByDeck($DeckID){
+
+    	global $db;
+
+		$query = $db->prepare("SELECT userdecks.UserFK FROM userdecks
+								INNER JOIN decks ON userdecks.DeckFK = decks.DeckID							
+								WHERE DeckID = :DeckID");
+		$query->bindParam(":DeckID", $DeckID);
+		$query->execute();
+
+		// returns an array of 1 item, so grab the first item instead of
+		// the entire array
+		$result = $query->fetch()[0];
+
+		return $result;
+
     }
 
     function AddDeckToCollection($DeckID){
