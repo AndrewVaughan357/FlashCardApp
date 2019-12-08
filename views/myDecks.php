@@ -21,7 +21,7 @@
         <div class="col-sm-8 col-md-6 mt-5 mx-auto">
             <?php
                 if (isset($_SESSION['editDecksMessage'])) {
-                    echo '<p>' . $_SESSION['editDecksMessage'] . '</p>';
+                    echo '<p>' . ($_SESSION['editDecksMessage']) . '</p>';
                     unset($_SESSION['editDecksMessage']);
                 }
             ?>

@@ -6,6 +6,16 @@
 	if(isset($_GET['DeckID'])){
 		$deckID = $_GET['DeckID'];
 		$deck = GetDeckByID($deckID);
+
+		$loggedInUserId = GetUserByEmail($_SESSION['signedInEmail']);
+		$deckOwnerUserId = GetUserIdByDeck($deckID);
+	
+		if ($loggedInUserId !== $deckOwnerUserId) {
+			$_SESSION['editDecksMessage'] = 'You do not have persmission to make changes to that deck.';
+			header('Location: ../views/myDecks.php');
+			exit();
+		}
+
     	include_once('../views/newDeck.php');
 	}
 
@@ -21,6 +31,7 @@
 		{
 			$_SESSION['editDeckErrorMessage'] = 'The deck must have a name and description';
 			header("Location: ./editDeck.php?DeckID=" . $deckID);
+			exit();
 		}
 		else
 		{
@@ -35,6 +46,7 @@
 
 			$_SESSION['editDecksMessage'] = 'Deck changes successfully saved.';
 			header("Location: ../views/myDecks.php");
+			exit();
 		}
 	}	
 ?>
